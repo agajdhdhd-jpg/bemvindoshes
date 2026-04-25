@@ -1,1 +1,522 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Dulcineia Papelaria | Artigos de Papelaria em São Paulo</title>
+    <!-- Bootstrap 5 + Icons + Fonts -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fef9f0;
+            color: #2c2b28;
+            scroll-behavior: smooth;
+        }
+        h1, h2, h3, h4, .logo-font {
+            font-family: 'Playfair Display', serif;
+        }
+        /* Paleta de cores personalizada: tons terrosos, papel e suaves */
+        :root {
+            --paper-cream: #fdf8ed;
+            --ink-blue: #2c3e66;
+            --warm-brown: #b87b4b;
+            --soft-gray: #f0ede8;
+            --accent-gold: #d4af7a;
+        }
+        .navbar {
+            background-color: white;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.03);
+            padding: 1rem 0;
+            transition: all 0.3s;
+        }
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.7rem;
+            color: var(--ink-blue);
+            letter-spacing: -0.3px;
+        }
+        .navbar-brand span {
+            color: var(--warm-brown);
+            font-weight: 600;
+        }
+        .nav-link {
+            font-weight: 500;
+            color: #4a4a48;
+            margin: 0 0.5rem;
+            transition: 0.2s;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: var(--warm-brown);
+        }
+        .btn-papelaria {
+            background-color: var(--warm-brown);
+            color: white;
+            border-radius: 40px;
+            padding: 0.6rem 1.8rem;
+            font-weight: 500;
+            border: none;
+            transition: 0.2s ease;
+        }
+        .btn-papelaria:hover {
+            background-color: #9e643d;
+            transform: translateY(-2px);
+            color: white;
+        }
+        .btn-outline-papel {
+            border: 2px solid var(--warm-brown);
+            color: var(--warm-brown);
+            border-radius: 40px;
+            padding: 0.5rem 1.5rem;
+            font-weight: 500;
+        }
+        .btn-outline-papel:hover {
+            background-color: var(--warm-brown);
+            color: white;
+        }
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #fff6e8 0%, #f9efdf 100%);
+            padding: 5rem 0 4rem 0;
+            border-bottom: 1px solid rgba(184, 123, 75, 0.15);
+        }
+        .hero h1 {
+            font-size: 3.2rem;
+            font-weight: 700;
+            color: var(--ink-blue);
+        }
+        .hero .highlight {
+            color: var(--warm-brown);
+            border-bottom: 3px dashed var(--accent-gold);
+        }
+        .hero-icon {
+            font-size: 2.8rem;
+            color: var(--warm-brown);
+            background: white;
+            width: 70px;
+            height: 70px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 60px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.05);
+        }
+        /* cards e seções */
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: var(--ink-blue);
+            position: relative;
+            display: inline-block;
+            margin-bottom: 2rem;
+        }
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 0;
+            width: 70px;
+            height: 3px;
+            background: var(--accent-gold);
+            border-radius: 3px;
+        }
+        .card-produto {
+            border: none;
+            background: white;
+            border-radius: 24px;
+            transition: 0.25s ease;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.02);
+            padding: 0.8rem;
+            text-align: center;
+        }
+        .card-produto:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 30px rgba(0,0,0,0.08);
+        }
+        .icon-circle {
+            background: #f5ede3;
+            width: 80px;
+            height: 80px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-size: 2.4rem;
+            color: var(--warm-brown);
+            margin-bottom: 1rem;
+        }
+        .info-box {
+            background: white;
+            border-radius: 28px;
+            padding: 1.8rem;
+            height: 100%;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.02);
+            border: 1px solid #f0e4d4;
+        }
+        .badge-cnpj {
+            font-family: monospace;
+            background: #eae3d8;
+            padding: 6px 12px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+        }
+        footer {
+            background-color: #1f2a3e;
+            color: #e9e1d5;
+        }
+        .footer-links a {
+            color: #cfc5b5;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+        .footer-links a:hover {
+            color: var(--accent-gold);
+        }
+        .whatsapp-float {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background-color: #25d366;
+            color: white;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            z-index: 999;
+            transition: 0.2s;
+        }
+        .whatsapp-float:hover {
+            background-color: #1daa5a;
+            transform: scale(1.05);
+            color: white;
+        }
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.3rem;
+            }
+            .section-title {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
 
+    <!-- Botão WhatsApp flutuante -->
+    <a href="https://wa.me/551132294414?text=Olá!%20Gostaria%20de%20informações%20sobre%20produtos%20de%20papelaria." class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">Papelaria <span>Dulcineia</span></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain" aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarMain">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
+                    <li class="nav-item"><a class="nav-link active" href="#home">Início</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#produtos">Produtos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#sobre">Sobre</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contato">Contato</a></li>
+                    <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
+                        <a class="btn btn-papelaria" href="#contato"><i class="fas fa-store me-1"></i> Visitar loja</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero / apresentação -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-md-7">
+                    <div class="mb-3">
+                        <span class="badge-cnpj"><i class="far fa-clock me-1"></i> Desde 2011 • Tradição em papelaria</span>
+                    </div>
+                    <h1 class="mb-3">Sua papelaria de <span class="highlight">confiança</span> em São Paulo</h1>
+                    <p class="lead mb-4">Há mais de 13 anos oferecendo materiais escolares, escritório, artesanato e muito mais. Atendimento acolhedor e produtos de qualidade.</p>
+                    <div class="d-flex flex-wrap gap-3">
+                        <a href="#produtos" class="btn btn-papelaria"><i class="fas fa-pencil-alt me-2"></i> Conheça nossos produtos</a>
+                        <a href="#contato" class="btn btn-outline-papel"><i class="fas fa-map-marker-alt me-2"></i> Como chegar</a>
+                    </div>
+                </div>
+                <div class="col-md-5 text-center">
+                    <div class="hero-icon mx-auto">
+                        <i class="fas fa-pen-fancy"></i>
+                    </div>
+                    <div class="mt-4 d-flex justify-content-center gap-4">
+                        <div><i class="fas fa-shipping-fast text-warm-brown fs-4 me-1"></i> <small>Entrega rápida</small></div>
+                        <div><i class="fas fa-hand-holding-heart fs-4 me-1"></i> <small>Atendimento especial</small></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção Diferenciais / Ícones e Frases -->
+    <section class="py-5 bg-white">
+        <div class="container">
+            <div class="row text-center g-4">
+                <div class="col-md-4">
+                    <div class="icon-circle mx-auto">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h4 class="fw-bold mt-3">Materiais Escolares</h4>
+                    <p class="text-muted">Listas completas, mochilas, cadernos e tudo para o ano letivo com preços acessíveis.</p>
+                </div>
+                <div class="col-md-4">
+                    <div class="icon-circle mx-auto">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h4 class="fw-bold mt-3">Escritório Profissional</h4>
+                    <p class="text-muted">Papelaria administrativa, envelopes, carimbos, pastas e organizadores.</p>
+                </div>
+                <div class="col-md-4">
+                    <div class="icon-circle mx-auto">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h4 class="fw-bold mt-3">Arte & Papel Criativo</h4>
+                    <p class="text-muted">Papéis especiais, tintas, pincéis e itens para scrapbooking e artesanato.</p>
+                </div>
+            </div>
+            <div class="text-center mt-5">
+                <p class="fst-italic fs-5 text-secondary">"Onde a criatividade encontra o papel — inspiração para todos os dias."</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Produtos / Categorias principais -->
+    <section id="produtos" class="py-5" style="background-color: #fcf8f2;">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title">Produtos em Destaque</h2>
+                <p class="text-muted">O que você precisa para estudar, trabalhar ou criar, tudo em um só lugar.</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3">
+                    <div class="card-produto">
+                        <div class="icon-circle bg-soft"><i class="fas fa-book-open"></i></div>
+                        <h5 class="fw-bold">Cadernos Inteligentes</h5>
+                        <p class="small text-muted">Capas duras, pautados ou pontilhados. Miolo ecológico.</p>
+                        <i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star-half-alt text-warning"></i>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="card-produto">
+                        <div class="icon-circle bg-soft"><i class="fas fa-paintbrush"></i></div>
+                        <h5 class="fw-bold">Kit Aquarela</h5>
+                        <p class="small text-muted">Tintas vibrantes e pincéis profissionais para artistas.</p>
+                        <i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="card-produto">
+                        <div class="icon-circle bg-soft"><i class="fas fa-calculator"></i></div>
+                        <h5 class="fw-bold">Material Escolar 2025</h5>
+                        <p class="small text-muted">Lápis, canetas, borrachas, compassos e muito mais.</p>
+                        <i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="far fa-star"></i>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="card-produto">
+                        <div class="icon-circle bg-soft"><i class="fas fa-boxes"></i></div>
+                        <h5 class="fw-bold">Organizadores de Mesa</h5>
+                        <p class="small text-muted">Porta-canetas, bandejas e arquivos elegantes.</p>
+                        <i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="far fa-star"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-5">
+                <a href="#" class="btn btn-outline-papel px-4 py-2">Ver catálogo completo <i class="fas fa-arrow-right ms-1"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Informações da Empresa + Localização e CNPJ etc -->
+    <section id="sobre" class="py-5">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-6">
+                    <h2 class="section-title mb-4">Sobre a Papelaria Dulcineia</h2>
+                    <p class="mb-3">Desde 18 de março de 2011, a <strong>Dulcineia Aparecida da Silva Ishizawa</strong> atua no coração da Vila Santana, São Paulo, com dedicação e carinho. Nossa trajetória no comércio varejista de artigos de papelaria é marcada pelo compromisso com a qualidade e atendimento personalizado.</p>
+                    <p class="mb-4">Acreditamos que o papel conecta ideias, sonhos e conhecimento. Por isso, oferecemos desde itens escolares básicos até produtos especializados para arquitetura, desenho e escritórios.</p>
+                    <div class="info-box">
+                        <h5><i class="fas fa-address-card me-2 text-warm-brown"></i> Dados Cadastrais</h5>
+                        <hr class="my-2">
+                        <p><strong>Razão Social:</strong> Dulcineia Aparecida da Silva Ishizawa</p>
+                        <p><strong>Nome Fantasia:</strong> Dulcineia Aparecida da Silva Ishizawa</p>
+                        <p><strong>CNPJ:</strong> 13.446.617/0001-87</p>
+                        <p><strong>Data Situação Cadastral:</strong> 18/03/2011 (Ativa)</p>
+                        <p><strong>Endereço:</strong> Rua Mercedes Lopes, 363 - Vila Santana, São Paulo - SP, CEP: 03614-000</p>
+                        <div class="mt-3">
+                            <span class="badge bg-secondary bg-opacity-10 text-dark p-2"><i class="fas fa-check-circle text-success"></i> Situação cadastral regular</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="info-box h-100">
+                        <h5><i class="fas fa-map-pin me-2 text-warm-brown"></i> Onde nos encontrar</h5>
+                        <div class="mt-3">
+                            <div class="mb-3 d-flex align-items-start gap-3">
+                                <i class="fas fa-location-dot fs-4 mt-1" style="color: var(--warm-brown);"></i>
+                                <div>
+                                    <strong>Loja Física</strong><br>
+                                    Rua Mercedes Lopes, 363, Vila Santana<br>
+                                    São Paulo - SP, CEP 03614-000<br>
+                                    <span class="small text-muted">Próximo ao metrô Penha / estação Penha - linhas 11 e 12</span>
+                                </div>
+                            </div>
+                            <div class="mb-3 d-flex align-items-start gap-3">
+                                <i class="fas fa-phone-alt fs-4" style="color: var(--warm-brown);"></i>
+                                <div><strong>Telefone & WhatsApp</strong><br> (11) 3229-4414</div>
+                            </div>
+                            <div class="mb-3 d-flex align-items-start gap-3">
+                                <i class="fas fa-envelope fs-4" style="color: var(--warm-brown);"></i>
+                                <div><strong>E-mail</strong><br> contato@papelariadulcineia.com.br</div>
+                            </div>
+                            <div class="mt-4">
+                                <i class="fas fa-clock me-1"></i> <strong>Horário de Funcionamento:</strong><br>
+                                Segunda a Sexta: 09h – 19h | Sábado: 09h – 14h | Domingos e feriados: fechado.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Frases / Depoimentos / Clientes -->
+    <section class="py-5" style="background: #e9e2d6;">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title">O que dizem nossos clientes</h2>
+                <p>Quem compra, recomenda e confia na qualidade da nossa papelaria.</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="bg-white p-4 rounded-4 shadow-sm h-100">
+                        <i class="fas fa-quote-left fs-2 text-muted opacity-50"></i>
+                        <p class="mt-2 fst-italic">"Sempre encontro tudo para a volta às aulas dos meus filhos. Atendimento nota 10 e variedade incrível!"</p>
+                        <div class="mt-3"><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i></div>
+                        <strong>— Mariana C., cliente fiel</strong>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="bg-white p-4 rounded-4 shadow-sm h-100">
+                        <i class="fas fa-quote-left fs-2 text-muted opacity-50"></i>
+                        <p class="mt-2 fst-italic">"Papelaria completa, desde itens para escritório até material artístico. A entrega é rápida e caprichada."</p>
+                        <div class="mt-3"><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i></div>
+                        <strong>— Ricardo A., designer</strong>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="bg-white p-4 rounded-4 shadow-sm h-100">
+                        <i class="fas fa-quote-left fs-2 text-muted opacity-50"></i>
+                        <p class="mt-2 fst-italic">"Localização ótima, ambiente acolhedor. Dulcineia sempre atenciosa, me sinto em casa! Recomendo demais."</p>
+                        <div class="mt-3"><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i></div>
+                        <strong>— Fernanda L., professora</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contato / Map embed + formulário simples -->
+    <section id="contato" class="py-5">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-5">
+                    <h2 class="section-title mb-4">Fale conosco</h2>
+                    <p>Estamos prontos para atender você, tirar dúvidas e receber sugestões. Prefere atendimento rápido? Use nosso WhatsApp ou telefone.</p>
+                    <ul class="list-unstyled mt-4">
+                        <li class="mb-3"><i class="fas fa-phone-alt me-3 fa-fw" style="color: var(--warm-brown);"></i> (11) 3229-4414</li>
+                        <li class="mb-3"><i class="fab fa-whatsapp me-3 fa-fw" style="color: #25d366;"></i> (11) 3229-4414 (WhatsApp)</li>
+                        <li class="mb-3"><i class="far fa-envelope me-3 fa-fw" style="color: var(--warm-brown);"></i> contato@papelariadulcineia.com.br</li>
+                        <li class="mb-3"><i class="fas fa-map-pin me-3 fa-fw"></i> Rua Mercedes Lopes, 363 - Vila Santana, SP</li>
+                    </ul>
+                    <div class="mt-4">
+                        <a href="https://wa.me/551132294414" class="btn btn-papelaria w-100 rounded-pill" target="_blank"><i class="fab fa-whatsapp me-2"></i> Iniciar conversa no WhatsApp</a>
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <div class="info-box p-0 overflow-hidden rounded-4" style="border: none;">
+                        <!-- Mapa estático / iframe Google Maps - localização aproximada da Rua Mercedes Lopes, 363 - Vila Santana -->
+                        <iframe src="https://maps.google.com/maps?q=Rua%20Mercedes%20Lopes%2C%20363%2C%20Vila%20Santana%2C%20S%C3%A3o%20Paulo%20-%20SP%2C%2003614-000&output=embed&z=16" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                        <div class="p-4">
+                            <h5><i class="fas fa-paper-plane me-1"></i> Envie uma mensagem rápida</h5>
+                            <form action="#" method="post">
+                                <div class="row g-3 mt-1">
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control" placeholder="Seu nome" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input type="email" class="form-control" placeholder="E-mail ou telefone">
+                                    </div>
+                                    <div class="col-12">
+                                        <textarea class="form-control" rows="3" placeholder="Digite sua mensagem..."></textarea>
+                                    </div>
+                                    <div class="col-12">
+                                        <button class="btn btn-papelaria" type="button">Enviar mensagem <i class="fas fa-arrow-right ms-1"></i></button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rodapé -->
+    <footer class="pt-5 pb-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5 mb-4">
+                    <h4 class="text-white fw-bold">Papelaria Dulcineia</h4>
+                    <p class="text-light-emphasis">Comércio varejista de artigos de papelaria desde 2011. Compromisso com a comunidade da Vila Santana e região.</p>
+                    <div class="mt-2">
+                        <i class="fab fa-instagram me-2 fs-5"></i>
+                        <i class="fab fa-facebook me-2 fs-5"></i>
+                        <i class="fab fa-whatsapp fs-5"></i>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h6 class="text-uppercase fw-semibold mb-3">Links úteis</h6>
+                    <ul class="list-unstyled footer-links">
+                        <li><a href="#home">Início</a></li>
+                        <li><a href="#produtos">Produtos</a></li>
+                        <li><a href="#sobre">Sobre a empresa</a></li>
+                        <li><a href="#contato">Contato e localização</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h6 class="text-uppercase fw-semibold mb-3">Horário de funcionamento</h6>
+                    <p>Seg a Sex: 09h – 19h<br> Sábado: 09h – 14h<br>Fechado aos domingos e feriados.</p>
+                    <p><i class="fas fa-copyright me-1"></i> 2025 Dulcineia Papelaria - Todos os direitos reservados.</p>
+                </div>
+            </div>
+            <hr class="bg-secondary opacity-25">
+            <div class="text-center small text-secondary">
+                CNPJ: 13.446.617/0001-87 | Situação cadastral ativa desde 18/03/2011
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
